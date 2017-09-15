@@ -3,6 +3,7 @@ package com.theironyard.invoicify.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,7 +24,7 @@ public class AdminController {
 	@GetMapping("/companies")
 	public ModelAndView showCompanies() {
 		ModelAndView mv = new ModelAndView("admin/companies");
-		mv.addObject("companies", companyRepository.findAll());
+		mv.addObject("companies", companyRepository.findAll(new Sort(Sort.Direction.ASC, "name")));
 		return mv;
 	}
 	
