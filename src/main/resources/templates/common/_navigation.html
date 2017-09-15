@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<div>
+  {{#user}}
+    <form action="/logout" method="post">
+      Hello, {{ user.username }}
+      <button>Logout</button>
+      <input type="hidden" name="{{ _csrf.parameterName }}" value="{{ _csrf.token }}">
+    </form>
+	{{#isAdmin}}
+    	<a href="/invoices">Invoices</a>
+		<a href="/billing-records">Billing Records</a>
+		<a href="/admin/companies">Companies</a>
+	{{/isAdmin}}
+	{{#isClerk}}
+		<a href="/billing-records">Billing Records</a>
+	{{/isClerk}}
+	{{#isAccountant}}
+		<a href="/invoices">Invoices</a>
+	{{/isAccountant}}
+  {{/user}}
+  {{#notUser}}
+    <a href="/login">Login</a>
+    <a href="/signup">Sign up</a>
+  {{/notUser}}
+</div>
+
+</body>
+</html>
