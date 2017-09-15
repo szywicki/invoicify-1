@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -24,5 +25,11 @@ public class AdminController {
 		ModelAndView mv = new ModelAndView("admin/companies");
 		mv.addObject("companies", companyRepository.findAll());
 		return mv;
+	}
+	
+	@PostMapping("/companies")
+	public String createCompany(Company company) {
+		companyRepository.save(company);
+		return ("redirect:/admin/companies");
 	}
 }
