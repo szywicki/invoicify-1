@@ -6,7 +6,9 @@
 </head>
 <body>
 {{> common/_navigation }}
-
+{{#errorMessage}}
+        {{errorMessage}}
+{{/errorMessage}}
 <form action="/invoices/create" method="post">
 
 <input type="text" name="invoiceNumber" required>

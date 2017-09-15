@@ -17,4 +17,6 @@ public interface BillingRecordRepository extends JpaRepository<BillingRecord, Lo
 
 	List<BillingRecord> findByClientIdAndLineItemIsNull(long clientId);
 
+	List<BillingRecord> findByIdInAndIdIsNull(long[] recordIds);
+
 }
